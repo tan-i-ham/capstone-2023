@@ -23,6 +23,23 @@ def get_courses():
             matching_courses.append({'id': course['id'], 'name': course['name']})
     return jsonify(matching_courses)
 
+# example course access data
+access_logs = [
+    {'username': 'alice', 'ip': '192.168.1.101', 'timestamp': '2022-02-01T10:30:00Z', 'course_id': 1},
+    {'username': 'bob', 'ip': '192.168.1.102', 'timestamp': '2022-02-01T10:45:00Z', 'course_id': 1},
+    {'username': 'charlie', 'ip': '192.168.1.103', 'timestamp': '2022-02-02T11:00:00Z', 'course_id': 2},
+    {'username': 'alice', 'ip': '192.168.1.101', 'timestamp': '2022-02-03T12:00:00Z', 'course_id': 1},
+]
+
+@app.route(V1_API + '/course_access', methods=['GET'])
+def get_course_access():
+    course_id = request.args.get('course_id')
+    matching_logs = []
+    for log in access_logs:
+        if log['course_id'] == int(course_id):
+            matching_logs.append({'username': log['username'], 'ip': log['ip'], 'timestamp': log['timestamp']})
+    return jsonify(matching_logs)
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World! 2023 VT capstone</p>"
