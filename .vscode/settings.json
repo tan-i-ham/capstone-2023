@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/9db09969-0bf5-4f24-ae2e-89dfa6adba65/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/vt-capstone-backend",
+    "appService.deploySubpath": "."
+}
